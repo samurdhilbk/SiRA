@@ -142,6 +142,8 @@ public class StringFinder {
         propword.put("wtng","waiting");
         propword.put("v","we");
         propword.put("wat","what");
+        propword.put("wt","what");
+        propword.put("wts","what is");
         propword.put("wht","what");
         propword.put("wuzup","what is up");
         propword.put("wassup","what is up");
@@ -175,13 +177,13 @@ public class StringFinder {
             question_1.put(5,"Good Morning!");
         keywords.put("good morning",question_1);
 
-        /*HashMap question_2 = new HashMap<Integer,String>();
-            question_2.put(1,"");
-            question_2.put(2,"");
-            question_2.put(3,"");
-            question_2.put(4,"");
-            question_2.put(5,"");
-        keywords.put("where are you",question_2);*/
+        HashMap question_2 = new HashMap<Integer,String>();
+            question_2.put(1,"*");
+            question_2.put(2,"*");
+            question_2.put(3,"*");
+            question_2.put(4,"*");
+            question_2.put(5,"*");
+        keywords.put("where are you",question_2);
 
         /*HashMap question_3= new HashMap<Integer,String>();
             question_3.put(1,"");
@@ -453,9 +455,10 @@ public class StringFinder {
             if (newS=="user" || newS == "User")
                 finalmessage[q]= MainActivity.getUserName();
         }
+        String res="";
         for(String finString:finalmessage){
-            result+=finString+" "; 
+            res+=finString+" ";
         }
-        return result;
+        return res;
     }
 }

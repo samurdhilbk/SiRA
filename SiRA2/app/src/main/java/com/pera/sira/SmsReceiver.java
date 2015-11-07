@@ -38,6 +38,9 @@ public class SmsReceiver extends BroadcastReceiver {
         String messageTxt = messages.getMessageBody();
         StringFinder sf=new StringFinder();
         String replyTxt = sf.find(messages.getMessageBody().toString());
+        if(replyTxt.isEmpty()){
+            return;
+        }
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
         int ifSiRATurnedOn = sharedPref.getInt(context.getResources().getString(R.string.turned_on), 1);

@@ -26,7 +26,7 @@ public class GetLocation_1 implements LocationListener{
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("GPS", "location foundddddddddddd");
+        Log.d("GPS", "location found");
         lastUpdateTime= System.currentTimeMillis();
         lon = location.getLongitude();
         lat = location.getLatitude();

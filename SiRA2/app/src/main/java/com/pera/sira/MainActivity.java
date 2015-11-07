@@ -1,11 +1,14 @@
 package com.pera.sira;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -45,6 +48,8 @@ public class MainActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         manager=(AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
         mCursor = getContentResolver().query(CalendarContract.Events.CONTENT_URI, COLS, null, null, null);
@@ -161,6 +166,31 @@ public class MainActivity extends Activity{
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
+
+        /////////////// Test notification
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(android.R.drawable.ic_dialog_info)
+                        .setContentTitle("Hello! from SiRA")
+                        .setContentText("Welcome to SiRA...");
+
+//        Intent resultIntent = new Intent(this, MainActivity.class);
+// Because clicking the notification opens a new ("special") activity, there's
+// no need to create an artificial back stack.
+//        PendingIntent resultPendingIntent =
+//                PendingIntent.getActivity(
+//                        this,
+//                        0,
+//                        resultIntent,
+//                        PendingIntent.FLAG_UPDATE_CURRENT
+//                );
+
+        int mNotificationId = 001;
+// Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+// Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
 
     @Override
@@ -188,6 +218,7 @@ public class MainActivity extends Activity{
     public void goToPremium(View view) {
         Intent intent = new Intent(this, PremiumActivity.class);
         startActivity(intent);
+    }
     public static String getUserName(){
         return userName;
     }
