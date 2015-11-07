@@ -33,6 +33,7 @@ public class MainActivity extends Activity{
 
     public static AudioManager manager;
     public static Cursor mCursor = null;
+    public static String userName = "";
 
     private static final String[] COLS = new String[]
 
@@ -58,7 +59,7 @@ public class MainActivity extends Activity{
         int turned_on = sharedPref.getInt(getString(R.string.turned_on), 1);
         int calendar_on = sharedPref.getInt(getString(R.string.calendar_on), 1);
         int gps_on = sharedPref.getInt(getString(R.string.gps_on), 1);
-        String userName = sharedPref.getString("setting_userName", "User");
+        userName = sharedPref.getString("setting_userName", "User");
         String location = sharedPref.getString("setting_location", "Faculty");
         int delay = sharedPref.getInt("setting_delay", 5);
 
@@ -187,6 +188,8 @@ public class MainActivity extends Activity{
     public void goToPremium(View view) {
         Intent intent = new Intent(this, PremiumActivity.class);
         startActivity(intent);
+    public static String getUserName(){
+        return userName;
     }
 
     public void goToSiRAContacts(View view) {
