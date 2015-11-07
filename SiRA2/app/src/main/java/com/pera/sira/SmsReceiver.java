@@ -27,6 +27,7 @@ public class SmsReceiver extends BroadcastReceiver {
     private String city;
     public static Long lastGPSRequestTime;
     public static String lastGPSRequestNo;
+    private smsNotification notify;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -94,17 +95,8 @@ public class SmsReceiver extends BroadcastReceiver {
             }
             else{
                 sendSMSMessage(messages.getOriginatingAddress(), replyTxt);
-                Notification n  = new Notification.Builder(context)
-                        .setContentTitle("I had to reply!")
-                        .setContentText(replyTxt)
-                        .setContentIntent(pIntent)
-                        .setAutoCancel(false).build();
-
-
-                NotificationManager notificationManager =
-                        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-                notificationManager.notify(0, n);
+                notify = new smsNotification(messages.getOriginatingAddress(), messageTxt, replyTxt);
+                notify.smsNotify();
             }
 
        } else {
