@@ -13,10 +13,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
+    <application>
     <uses-library android:name="com.google.android.maps" />
-
-    <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -31,6 +36,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.pera.sira.PremiumActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="com.pera.sira.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pera.sira.MainActivity" />
+
+        </activity>
+
+        <activity
+            android:name="com.pera.sira.SiRAContacts"
+            android:label="@string/app_name"
+            android:parentActivityName="com.pera.sira.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pera.sira.MainActivity" />
+
+        </activity>
+
+        <activity
+        android:name="com.pera.sira.PositiveActivity"
+        android:label="Positive Answer"
+        android:parentActivityName="com.pera.sira.PremiumActivity" >
+        </activity>
 
         <receiver
             android:name="com.pera.sira.SmsReceiver"
@@ -38,6 +68,12 @@
             android:exported="true" >
             <intent-filter android:priority="2147483647" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.pera.sira.callReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
         <meta-data android:name="com.google.android.gms.version"

@@ -42,19 +42,24 @@ public class StringFinder {
         propword.put("cm","come");
 //d
         propword.put("dy","day");
-        propword.put("dng","doing?");
-        propword.put("doin","doing?");
+        propword.put("dng","doing");
+        propword.put("doin","doing");
         propword.put("don't","do not");
         propword.put("dnt","do not");
 //e
         propword.put("eve","evening");
 //f
         propword.put("fr","for");
+        propword.put("4","for");
+
 //g
         propword.put("gd","good");
         propword.put("gud","good");
+        propword.put("ge","good evening");
         propword.put("gm","good morning!");
         propword.put("gmrng","good morning");
+        propword.put("vgm","good morning");
+        propword.put("gn","good night");
         propword.put("gf","girlfriend");
 //h
         propword.put("hpy","happy");
@@ -79,10 +84,12 @@ public class StringFinder {
         propword.put("morn","morning");
         propword.put("mrning","morning");
 //n
+        propword.put("nt","not");
         propword.put("nw","now");
         propword.put("n8","night");
         propword.put("nyt","night");
         propword.put("ni8","night");
+        propword.put("nite","night");
 //o
         propword.put("ok","okay");
         propword.put("k","okay");
@@ -93,6 +100,7 @@ public class StringFinder {
         propword.put("f","of");
 //p
         propword.put("plz","please");
+        propword.put("pls","please");
 //q
 //r
         propword.put("rply","reply");
@@ -100,6 +108,13 @@ public class StringFinder {
         propword.put("c","see");
         propword.put("cu","see you");
 //t
+        propword.put("thankx","thank you");
+        propword.put("tnx","thank you");
+        propword.put("thnku","thank you");
+        propword.put("thnkx","thank you");
+        propword.put("thankz","thank you");
+        propword.put("thnkz","thank you");
+        propword.put("thanks","thank you");
         propword.put("dis","this");
         propword.put("ths","this");
         propword.put("thz","this");
@@ -123,6 +138,7 @@ public class StringFinder {
         propword.put("wassup","what is up");
         propword.put("wzsup","what is up");
         propword.put("sup","what is up");
+        propword.put("whatsup","what is up");
         propword.put("what's","what is");
         propword.put("whn","when");
         propword.put("wn","when");
@@ -160,7 +176,7 @@ public class StringFinder {
         keywords.put("whom are you with","The user is with me. I am SiRA.");
         keywords.put("who is with you","No one but SiRA");
         keywords.put("do not try to make a fool out of me","No. I'm not.");
-        keywords.put("who are you","the user is busy right now. I am SiRA.");
+        keywords.put("who are you","The user is busy right now. I am SiRA.");
         keywords.put("reply me","Sorry. I'm busy.");
         keywords.put("will you meet me","I'll tell you later.");
         keywords.put("okay","smile emoticon");
@@ -168,6 +184,10 @@ public class StringFinder {
         keywords.put("call me","Okay. I will call you later.");
         keywords.put("when are you coming","Mm.. Not right now.");
         keywords.put("we are waiting for you","Mm.. I'll be late.");
+        keywords.put("good evening","Good evening!!");
+        keywords.put("thank you","No problem");
+        keywords.put("how are you","I,m doing fine.A little busy right now.");
+        keywords.put("","");
     }
 
 
@@ -195,12 +215,19 @@ public class StringFinder {
         }
         //System.out.println(finmsg);
         Set<String> keys1=keywords.keySet();
-        for(String s:keys1){
-            CharSequence cs=s;
-            if(finmsg.contains(cs)){
-                result=keywords.get(s).toString();
+        CharSequence locationcs="where are you";
+        if(finmsg.contains(locationcs)){
+            result="*";
+        }
+        else{
+            for(String s:keys1){
+                CharSequence cs=s;
+                if(finmsg.contains(cs)){
+                    result=keywords.get(s).toString();
+                }
             }
         }
+
         return result;
     }
 }
